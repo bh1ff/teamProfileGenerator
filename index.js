@@ -73,6 +73,7 @@ const appM = () => {
         idList.push(answers.manageId)
     })
   }
+  newManager();
 };
 
 appM();
