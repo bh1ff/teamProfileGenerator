@@ -16,62 +16,98 @@ const tMembers = [];
 const idList = [];
 
 const appM = () => {
+
+    
+    function addEngineer() {
+        console.log('Adding an Engineer');
+    }
+  function createTeam() {
+    inquirer.prompt({
+        type:"list",
+        name:"newTeamType",
+        prompt:"Which employee type are you adding?",
+        choices: [
+            "Engineer",
+            "Intern",
+            "I don't want to add any more team members"
+        ]
+    }).then(userChoice => {
+        if(userChoice.newTeamType == "Engineer") {
+            // add engineer  time stamp 25.46
+        }
+        else if(userChoice.newTeamType == "Intern") {
+            // add intern 
+        }
+        else {
+            // finalise team function 
+        }
+
+    })
+  }
   function newManager() {
     console.log("Add a New Member");
-    inquirer.createPromptModule([
-      {
-        type: "input",
-        name: "managerName",
-        message: "What is your team manager's name",
-        validate: (answer) => {
-          if (answer != "") {
-            return true;
-          } else {
-            return "please enter a name";
-          }
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          name: "managerName",
+          message: "What is your team manager's name",
+          validate: (answer) => {
+            if (answer != "") {
+              return true;
+            } else {
+              return "please enter a name";
+            }
+          },
         },
-      },
-      {
-        type: "input",
-        name: "manageId",
-        message: "What is your team manager's id",
-        validate: (answer) => {
-          if (answer != "") {
-            return true;
-          } else {
-            return "please enter a valid id";
-          }
+        {
+          type: "input",
+          name: "manageId",
+          message: "What is your team manager's id",
+          validate: (answer) => {
+            if (answer != "") {
+              return true;
+            } else {
+              return "please enter a valid id";
+            }
+          },
         },
-      },
-      {
-        type: "input",
-        name: "managerEmail",
-        message: "What is your team manager's email?",
-        validate: (answer) => {
-          if (answer != "") {
-            return true;
-          } else {
-            return "please enter a valid email";
-          }
+        {
+          type: "input",
+          name: "managerEmail",
+          message: "What is your team manager's email?",
+          validate: (answer) => {
+            if (answer != "") {
+              return true;
+            } else {
+              return "please enter a valid email";
+            }
+          },
         },
-      },
-      {
-        type: "input",
-        name: "managerOffice",
-        message: "What is your team manager's office number",
-        validate: (answer) => {
-          if (answer != "") {
-            return true;
-          } else {
-            return "please enter a valid office number";
-          }
+        {
+          type: "input",
+          name: "managerOffice",
+          message: "What is your team manager's office number",
+          validate: (answer) => {
+            if (answer != "") {
+              return true;
+            } else {
+              return "please enter a valid office number";
+            }
+          },
         },
-      },
-    ]).then(answers => {
-        const manager = new Manager(answers.managerName, answers.manageId, answers.managerEmail, answers.managerOffice)
+      ])
+      .then((answers) => {
+        const manager = new Manager(
+          answers.managerName,
+          answers.manageId,
+          answers.managerEmail,
+          answers.managerOffice
+        );
         tMembers.push(manager);
-        idList.push(answers.manageId)
-    })
+        idList.push(answers.manageId);
+        createTeam();
+      });
   }
   newManager();
 };
