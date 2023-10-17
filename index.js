@@ -51,7 +51,7 @@ const appM = () => {
         );
         tMembers.push(intern);
         idList.push(answers.internId);
-        console.log(intern);
+        // console.log(intern);
         createTeam();
       });
   }
@@ -89,7 +89,7 @@ const appM = () => {
         );
         tMembers.push(engineer);
         idList.push(answers.engineerId);
-        console.log(engineer);
+        // console.log(engineer);
         createTeam();
       });
   }
@@ -177,7 +177,7 @@ const appM = () => {
           answers.managerEmail,
           answers.managerOffice
         );
-        console.log(manager);
+        // console.log(manager);
         tMembers.push(manager);
         idList.push(answers.manageId);
         createTeam();
