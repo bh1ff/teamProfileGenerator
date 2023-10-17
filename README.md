@@ -1,6 +1,6 @@
 # Team Profile Generator
 
-![Team Profile Generator Banner](./assets/live.png)
+![Team Profile Generator Banner](./assets/)
 
 A Node.js command-line application that dynamically generates a professional `team.html` file from a user's input using the Inquirer package. This application allows users to input information about their development team members and then renders an HTML file showcasing the team's profile.
 
