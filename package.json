@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/bh1ff/teamProfileGenerator#readme",
   "dependencies": {
-    "inquirer": "^9.2.11",
+    "inquirer": "^6.5.2",
     "jest": "^29.7.0"
   }
 }
