@@ -16,33 +16,63 @@ const tMembers = [];
 const idList = [];
 
 const appM = () => {
+  function buildTeam() {}
 
-    
-    function addEngineer() {
-        console.log('Adding an Engineer');
-    }
+  function addIntern() {}
+
+  function addEngineer() {
+    inquirer.prompt([
+      {
+        type: "input",
+        name: "engineerName",
+        message: "What is your engineer's name?"
+      },
+      {
+        type: "input",
+        name: "engineerId",
+        message: "What is your engineer's id?"
+      },
+      {
+        type: "input",
+        name: "engineerEmail",
+        message: "What is your engineer's Email?"
+      },
+      {
+        type: "input",
+        name: "engineerGithub",
+        message: "What is your engineer's github?"
+      },
+    ]).then(answers => {
+      const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub);
+      tMembers.push(engineer);
+      idList.push(answers.engineerId);
+      console.log(engineer);
+      createTeam();
+    })
+  }
   function createTeam() {
-    inquirer.prompt({
-        type:"list",
-        name:"newTeamType",
-        prompt:"Which employee type are you adding?",
-        choices: [
+    inquirer
+      .prompt([
+        {
+          type: "list",
+          name: "newTeamType",
+          prompt: "Which employee type are you adding?",
+          choices: [
             "Engineer",
             "Intern",
-            "I don't want to add any more team members"
-        ]
-    }).then(userChoice => {
-        if(userChoice.newTeamType == "Engineer") {
-            // add engineer  time stamp 25.46
+            "I don't want to add any more team members",
+          ],
+        },
+      ])
+      .then((userChoice) => {
+        if (userChoice.newTeamType == "Engineer") {
+          addEngineer();
+        } else if (userChoice.newTeamType == "Intern") {
+          addIntern();
+        } else {
+          buildTeam();
         }
-        else if(userChoice.newTeamType == "Intern") {
-            // add intern 
-        }
-        else {
-            // finalise team function 
-        }
-
-    })
+      });
   }
   function newManager() {
     console.log("Add a New Member");
@@ -104,6 +134,7 @@ const appM = () => {
           answers.managerEmail,
           answers.managerOffice
         );
+        console.log(manager);
         tMembers.push(manager);
         idList.push(answers.manageId);
         createTeam();
