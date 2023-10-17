@@ -18,37 +18,80 @@ const idList = [];
 const appM = () => {
   function buildTeam() {}
 
-  function addIntern() {}
+  function addIntern() {
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          name: "internName",
+          message: "What is your intern's name?",
+        },
+        {
+          type: "input",
+          name: "internId",
+          message: "What is your intern's id?",
+        },
+        {
+          type: "input",
+          name: "internEmail",
+          message: "What is your intern's Email?",
+        },
+        {
+          type: "input",
+          name: "internSchool",
+          message: "What is your intern's school?",
+        },
+      ])
+      .then((answers) => {
+        const intern = new Intern(
+          answers.internName,
+          answers.internId,
+          answers.internEmail,
+          answers.internSchool
+        );
+        tMembers.push(intern);
+        idList.push(answers.internId);
+        console.log(intern);
+        createTeam();
+      });
+  }
 
   function addEngineer() {
-    inquirer.prompt([
-      {
-        type: "input",
-        name: "engineerName",
-        message: "What is your engineer's name?"
-      },
-      {
-        type: "input",
-        name: "engineerId",
-        message: "What is your engineer's id?"
-      },
-      {
-        type: "input",
-        name: "engineerEmail",
-        message: "What is your engineer's Email?"
-      },
-      {
-        type: "input",
-        name: "engineerGithub",
-        message: "What is your engineer's github?"
-      },
-    ]).then(answers => {
-      const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub);
-      tMembers.push(engineer);
-      idList.push(answers.engineerId);
-      console.log(engineer);
-      createTeam();
-    })
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          name: "engineerName",
+          message: "What is your engineer's name?",
+        },
+        {
+          type: "input",
+          name: "engineerId",
+          message: "What is your engineer's id?",
+        },
+        {
+          type: "input",
+          name: "engineerEmail",
+          message: "What is your engineer's Email?",
+        },
+        {
+          type: "input",
+          name: "engineerGithub",
+          message: "What is your engineer's github?",
+        },
+      ])
+      .then((answers) => {
+        const engineer = new Engineer(
+          answers.engineerName,
+          answers.engineerId,
+          answers.engineerEmail,
+          answers.engineerGithub
+        );
+        tMembers.push(engineer);
+        idList.push(answers.engineerId);
+        console.log(engineer);
+        createTeam();
+      });
   }
   function createTeam() {
     inquirer
